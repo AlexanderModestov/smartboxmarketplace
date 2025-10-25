@@ -1,4 +1,4 @@
-import { AutomationCategory, DifficultyLevel, Service } from "@/types/automation";
+import { Service } from "@/types/automation";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -7,26 +7,15 @@ import { Filter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface FilterSidebarProps {
-  selectedCategories: AutomationCategory[];
-  selectedDifficulties: DifficultyLevel[];
+  categories: string[];
+  subcategories: string[];
+  selectedCategories: string[];
+  selectedSubcategories: string[];
   selectedServices: Service[];
-  onCategoryChange: (category: AutomationCategory) => void;
-  onDifficultyChange: (difficulty: DifficultyLevel) => void;
+  onCategoryChange: (category: string) => void;
+  onSubcategoryChange: (subcategory: string) => void;
   onServiceChange: (service: Service) => void;
 }
-
-const categories: AutomationCategory[] = [
-  "Marketing",
-  "Sales",
-  "Service",
-  "IT Operations",
-  "Finance",
-  "HR",
-  "Product Analytics",
-  "Other"
-];
-
-const difficulties: DifficultyLevel[] = ["Beginner", "Intermediate", "Advanced"];
 
 const services: Service[] = [
   "Google Sheets",
@@ -45,11 +34,13 @@ const services: Service[] = [
 ];
 
 const FilterSidebar = ({
+  categories,
+  subcategories,
   selectedCategories,
-  selectedDifficulties,
+  selectedSubcategories,
   selectedServices,
   onCategoryChange,
-  onDifficultyChange,
+  onSubcategoryChange,
   onServiceChange
 }: FilterSidebarProps) => {
   const handleSelectAllCategories = () => {
@@ -64,16 +55,16 @@ const FilterSidebar = ({
     selectedCategories.forEach(cat => onCategoryChange(cat));
   };
 
-  const handleSelectAllDifficulties = () => {
-    difficulties.forEach(diff => {
-      if (!selectedDifficulties.includes(diff)) {
-        onDifficultyChange(diff);
+  const handleSelectAllSubcategories = () => {
+    subcategories.forEach(sub => {
+      if (!selectedSubcategories.includes(sub)) {
+        onSubcategoryChange(sub);
       }
     });
   };
 
-  const handleResetDifficulties = () => {
-    selectedDifficulties.forEach(diff => onDifficultyChange(diff));
+  const handleResetSubcategories = () => {
+    selectedSubcategories.forEach(sub => onSubcategoryChange(sub));
   };
 
   const handleSelectAllServices = () => {
@@ -98,92 +89,100 @@ const FilterSidebar = ({
           </div>
 
           {/* Categories */}
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <Label className="text-sm font-semibold text-foreground">Application Area</Label>
-              <div className="flex gap-1">
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  className="h-6 text-xs px-2"
-                  onClick={handleSelectAllCategories}
-                >
-                  Select All
-                </Button>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  className="h-6 text-xs px-2"
-                  onClick={handleResetCategories}
-                >
-                  Reset
-                </Button>
+          {categories.length > 0 && (
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <Label className="text-sm font-semibold text-foreground">Category</Label>
+                <div className="flex gap-1">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-6 text-xs px-2"
+                    onClick={handleSelectAllCategories}
+                  >
+                    Select All
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-6 text-xs px-2"
+                    onClick={handleResetCategories}
+                  >
+                    Reset
+                  </Button>
+                </div>
+              </div>
+              <div className="space-y-3">
+                {categories.map((category) => (
+                  <div key={category} className="flex items-center space-x-2">
+                    <Checkbox
+                      id={`category-${category}`}
+                      checked={selectedCategories.includes(category)}
+                      onCheckedChange={() => onCategoryChange(category)}
+                    />
+                    <label
+                      htmlFor={`category-${category}`}
+                      className="text-sm text-muted-foreground cursor-pointer hover:text-foreground transition-colors"
+                    >
+                      {category}
+                    </label>
+                  </div>
+                ))}
               </div>
             </div>
-            <div className="space-y-3">
-              {categories.map((category) => (
-                <div key={category} className="flex items-center space-x-2">
-                  <Checkbox
-                    id={`category-${category}`}
-                    checked={selectedCategories.includes(category)}
-                    onCheckedChange={() => onCategoryChange(category)}
-                  />
-                  <label
-                    htmlFor={`category-${category}`}
-                    className="text-sm text-muted-foreground cursor-pointer hover:text-foreground transition-colors"
+          )}
+
+          {categories.length > 0 && subcategories.length > 0 && (
+            <Separator className="bg-border" />
+          )}
+
+          {/* Subcategories */}
+          {subcategories.length > 0 && (
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <Label className="text-sm font-semibold text-foreground">Subcategory</Label>
+                <div className="flex gap-1">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-6 text-xs px-2"
+                    onClick={handleSelectAllSubcategories}
                   >
-                    {category}
-                  </label>
+                    Select All
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-6 text-xs px-2"
+                    onClick={handleResetSubcategories}
+                  >
+                    Reset
+                  </Button>
                 </div>
-              ))}
-            </div>
-          </div>
-
-          <Separator className="bg-border" />
-
-          {/* Difficulty */}
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <Label className="text-sm font-semibold text-foreground">Difficulty</Label>
-              <div className="flex gap-1">
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  className="h-6 text-xs px-2"
-                  onClick={handleSelectAllDifficulties}
-                >
-                  Select All
-                </Button>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  className="h-6 text-xs px-2"
-                  onClick={handleResetDifficulties}
-                >
-                  Reset
-                </Button>
+              </div>
+              <div className="space-y-3">
+                {subcategories.map((subcategory) => (
+                  <div key={subcategory} className="flex items-center space-x-2">
+                    <Checkbox
+                      id={`subcategory-${subcategory}`}
+                      checked={selectedSubcategories.includes(subcategory)}
+                      onCheckedChange={() => onSubcategoryChange(subcategory)}
+                    />
+                    <label
+                      htmlFor={`subcategory-${subcategory}`}
+                      className="text-sm text-muted-foreground cursor-pointer hover:text-foreground transition-colors"
+                    >
+                      {subcategory}
+                    </label>
+                  </div>
+                ))}
               </div>
             </div>
-            <div className="space-y-3">
-              {difficulties.map((difficulty) => (
-                <div key={difficulty} className="flex items-center space-x-2">
-                  <Checkbox
-                    id={`difficulty-${difficulty}`}
-                    checked={selectedDifficulties.includes(difficulty)}
-                    onCheckedChange={() => onDifficultyChange(difficulty)}
-                  />
-                  <label
-                    htmlFor={`difficulty-${difficulty}`}
-                    className="text-sm text-muted-foreground cursor-pointer hover:text-foreground transition-colors"
-                  >
-                    {difficulty}
-                  </label>
-                </div>
-              ))}
-            </div>
-          </div>
+          )}
 
-          <Separator className="bg-border" />
+          {(categories.length > 0 || subcategories.length > 0) && (
+            <Separator className="bg-border" />
+          )}
 
           {/* Services */}
           <div className="space-y-4">

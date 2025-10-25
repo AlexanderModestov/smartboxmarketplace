@@ -29,11 +29,12 @@ export interface Automation {
   id: string;
   title: string;
   description: string;
-  category: AutomationCategory;
-  difficulty: DifficultyLevel;
+  category: string;
+  subcategory?: string;
+  difficulty?: DifficultyLevel;
   services: Service[];
-  rating: number;
-  reviews: number;
+  rating?: number;
+  reviews?: number;
   popular?: boolean;
-  gifUrl: string;
+  gifUrl?: string;
 }

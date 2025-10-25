@@ -1,10 +1,4 @@
 import { Automation } from "@/types/automation";
-import crmSheetsGif from "@/assets/automation-crm-sheets.gif";
-import stripeSlackGif from "@/assets/automation-stripe-slack.gif";
-import hrOnboardingGif from "@/assets/automation-hr-onboarding.gif";
-import githubBackupGif from "@/assets/automation-github-backup.gif";
-import emailMarketingGif from "@/assets/automation-email-marketing.gif";
-import trelloNotionGif from "@/assets/automation-trello-notion.gif";
 
 export const automations: Automation[] = [
   {
@@ -16,8 +10,7 @@ export const automations: Automation[] = [
     services: ["CRM", "Google Sheets", "API"],
     rating: 4.8,
     reviews: 124,
-    popular: true,
-    gifUrl: crmSheetsGif
+    popular: true
   },
   {
     id: "2",
@@ -28,8 +21,7 @@ export const automations: Automation[] = [
     services: ["Slack", "Stripe", "API"],
     rating: 4.9,
     reviews: 203,
-    popular: true,
-    gifUrl: stripeSlackGif
+    popular: true
   },
   {
     id: "3",
@@ -40,8 +32,7 @@ export const automations: Automation[] = [
     services: ["Gmail", "Slack", "Trello", "Google Sheets"],
     rating: 4.7,
     reviews: 89,
-    popular: true,
-    gifUrl: hrOnboardingGif
+    popular: true
   },
   {
     id: "4",
@@ -51,8 +42,7 @@ export const automations: Automation[] = [
     difficulty: "Intermediate",
     services: ["GitHub", "Cloud Storage", "API"],
     rating: 4.6,
-    reviews: 67,
-    gifUrl: githubBackupGif
+    reviews: 67
   },
   {
     id: "5",
@@ -63,8 +53,7 @@ export const automations: Automation[] = [
     services: ["Gmail", "Google Sheets", "API", "CRM"],
     rating: 4.9,
     reviews: 156,
-    popular: true,
-    gifUrl: emailMarketingGif
+    popular: true
   },
   {
     id: "6",
@@ -74,8 +63,7 @@ export const automations: Automation[] = [
     difficulty: "Intermediate",
     services: ["Trello", "Notion", "API"],
     rating: 4.5,
-    reviews: 92,
-    gifUrl: trelloNotionGif
+    reviews: 92
   },
   {
     id: "7",
@@ -85,8 +73,7 @@ export const automations: Automation[] = [
     difficulty: "Advanced",
     services: ["Google Sheets", "Gmail", "API", "ERP"],
     rating: 4.8,
-    reviews: 78,
-    gifUrl: crmSheetsGif
+    reviews: 78
   },
   {
     id: "8",
@@ -96,8 +83,7 @@ export const automations: Automation[] = [
     difficulty: "Advanced",
     services: ["Slack", "Trello", "API"],
     rating: 4.7,
-    reviews: 134,
-    gifUrl: stripeSlackGif
+    reviews: 134
   },
   {
     id: "9",
@@ -108,8 +94,7 @@ export const automations: Automation[] = [
     services: ["Gmail", "Slack", "CRM", "API"],
     rating: 4.6,
     reviews: 111,
-    popular: true,
-    gifUrl: hrOnboardingGif
+    popular: true
   },
   {
     id: "10",
@@ -119,8 +104,7 @@ export const automations: Automation[] = [
     difficulty: "Beginner",
     services: ["Stripe", "Google Sheets", "API"],
     rating: 4.9,
-    reviews: 187,
-    gifUrl: githubBackupGif
+    reviews: 187
   },
   {
     id: "11",
@@ -130,8 +114,7 @@ export const automations: Automation[] = [
     difficulty: "Beginner",
     services: ["Calendar", "CRM", "API"],
     rating: 4.5,
-    reviews: 95,
-    gifUrl: emailMarketingGif
+    reviews: 95
   },
   {
     id: "12",
@@ -141,8 +124,7 @@ export const automations: Automation[] = [
     difficulty: "Advanced",
     services: ["ERP", "Google Sheets", "API"],
     rating: 4.7,
-    reviews: 43,
-    gifUrl: trelloNotionGif
+    reviews: 43
   },
   {
     id: "13",
@@ -152,8 +134,7 @@ export const automations: Automation[] = [
     difficulty: "Beginner",
     services: ["Airtable", "Google Sheets", "API"],
     rating: 4.8,
-    reviews: 143,
-    gifUrl: crmSheetsGif
+    reviews: 143
   },
   {
     id: "14",
@@ -163,8 +144,7 @@ export const automations: Automation[] = [
     difficulty: "Advanced",
     services: ["Gmail", "API"],
     rating: 4.6,
-    reviews: 72,
-    gifUrl: stripeSlackGif
+    reviews: 72
   },
   {
     id: "15",
@@ -174,7 +154,6 @@ export const automations: Automation[] = [
     difficulty: "Advanced",
     services: ["Gmail", "Google Sheets", "Slack", "API"],
     rating: 4.7,
-    reviews: 58,
-    gifUrl: hrOnboardingGif
+    reviews: 58
   }
 ];
